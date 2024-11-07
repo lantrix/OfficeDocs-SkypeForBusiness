@@ -242,7 +242,7 @@ foreach ($channel in $channelList) {
     foreach ($folder in $ExportContents)
     {
         #If Channel Name matches..
-        if ($channel.name -eq $folder){
+        if ($channel.name -eq $folder.Name){
             $channelJsons = Get-ChildItem -Path $folder.FullName -File
             Write-Host -ForegroundColor White "$(Get-TimeStamp) Info: Starting to process $($channelJsons.Count) days of content for #$($channel.name)."
             #Start processing the daily JSON for files
