@@ -1,5 +1,5 @@
 ---
-title: Remote sign in and sign out for Teams Android devices
+title: Remotely sign in and sign out for Teams Android devices
 author: mstonysmith
 ms.author: tonysmit
 manager: pamgreen
@@ -22,13 +22,13 @@ search.appverid: MET150
 description: Learn how to remotely sign in and sign out of Teams Android devices.
 ---
 
-# Remote sign in and sign out for Teams Android devices
+# Remotely sign in and sign out for Teams Android devices
 
 This article describes how to remote sign in and sign out Teams Android devices from the Teams admin center. If you haven't provisioned a device yet, or the device is provisioned but has never been signed-in, see [Remote provisioning and sign in for Teams Android devices](remote-provision-remote-login.md).
 
 This video shows how to sign into Teams devices.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE5fHGR?autoplay=false]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=8b7feeaf-526c-414f-a0c7-4d5217f8c655]
 
 ## Remote sign in
 

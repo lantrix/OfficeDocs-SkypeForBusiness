@@ -1,7 +1,7 @@
 ---
 title: Emergency addresses for remote locations
-author: CarolynRowe
-ms.author: crowe
+author: sfrancis206
+ms.author: scottfrancis
 manager: pamgreen
 ms.reviewer: roykuntz
 ms.date: 01/22/2024
@@ -77,7 +77,7 @@ The following table shows the types of emergency addresses and associated routin
 | Emergency address obtained from the operating system and manually edited and confirmed by the user.  | Screened and Transferred to PSAP. |
 | Emergency address entered manually and confirmed by the user. | Screened and Transferred to PSAP. |
 | Emergency address entered through address autosuggest and confirmed by the user.   | Direct to PSAP.  |
-| Emergency address statically assigned to a Common Area Phone. | Direct to PSAP.|
+| Emergency address statically assigned to a Common Area Phone or Microsoft Teams Room. | Direct to PSAP.|
 | Emergency address statically assigned to the user/number. | Screened and Transferred to PSAP. |
 | Null | Screened and Transferred to PSAP. |
 

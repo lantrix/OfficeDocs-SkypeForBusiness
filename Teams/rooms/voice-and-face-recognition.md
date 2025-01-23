@@ -27,7 +27,7 @@ description: Learn how admins can manage and control voice and face enrollment i
 
 Voice and face enrollment is a feature in Microsoft Teams that allows users to create a voice and face profile. Voice and face enrollment is used to improve the audio quality and user experience of Teams meetings and calls. This feature helps to reduce background noise and secondary speakers and provides speaker attribution and Microsoft CoPilot accuracy in meeting rooms equipped with Microsoft Teams Rooms devices. Admins and security teams can manage and control this feature and ensure for which user the enrollment and usage of the profile are turned on.
 
-Users can unenroll their profile, even if the admin disables enrollment for them. Users can save their information by staying enrolled so they are in full control of their voice and face data. See [Create Recognition profiles for Microsoft IntelliFrame](https://support.microsoft.com/office/create-recognition-profiles-for-microsoft-intelliframe-f0084478-52a7-4c52-bcdc-9063ed0e0bc0).
+Users have full control over their voice and face data and can choose to stay enrolled or unenroll their profiles at any time through their desktop client, even if admins have disabled enrollment after the user has enrolled. See [Create Recognition profiles for Microsoft IntelliFrame](https://support.microsoft.com/office/create-recognition-profiles-for-microsoft-intelliframe-f0084478-52a7-4c52-bcdc-9063ed0e0bc0).
 
 This article covers:
 
@@ -36,7 +36,7 @@ This article covers:
 - [Data retention](#data-retention): The duration that Microsoft Teams keeps the voice and face profiles of users.
 - [Admin settings](#admin-settings): Admins can turn on or off voice and face enrollment for specific users, groups of users, or the whole organization. They can configure the feature using PowerShell.
 
-- [Data export](#data-export): Admins can export the voice and face profiles of users for backup 
+- [Data export](#data-export): Data export is managed directly by end users.
 
 - [Frequently asked questions](#frequently-asked-questions): Common questions and answers.
 
@@ -84,10 +84,10 @@ The language of the Teams app that is installed determines the voice enrollment 
 - zh-tw
 
 > [!NOTE]
-> There is no language requirement for face enrollment, but you need to create your voice profile before you can enroll your face.
+> There's no language requirement for face enrollment, but you need to create your voice profile before you can enroll your face.
 
 > [!IMPORTANT]
-> If the language you are looking for isn't supported for enrolling your voice, Microsoft is currently exploring fallback options.
+> If the language you're looking for isn't supported for enrolling your voice, Microsoft is currently exploring fallback options.
 
 ## Data handling
 
@@ -99,7 +99,7 @@ The voice and face data for users is encrypted at rest and in transit and is pro
 
 ## Data retention
 
-When a user is enrolled in the feature and has an active Teams account, Microsoft keeps their voice and face profiles. Their voice and face profile is removed right away if they unenroll from the feature. Their voice and face profile is removed within 90 days if their Teams account is deleted. Admins can download voice and face profiles of users manually, using the Teams Admin Center. 
+When a user is enrolled in the feature and has an active Teams account, Microsoft keeps their voice and face profiles. Their voice and face profile is removed right away if they unenroll from the feature. Their voice and face profile is removed within 90 days if their Teams account is deleted. 
 
 If users enroll their voice or face profile, they can always choose to unenroll it later, even if the current assigned admin policy doesn't let them enroll.
 
@@ -111,7 +111,7 @@ If users leave the organization, the customer data is deleted accordingly with t
 
 ## Admin settings
 
-Please connect to PowerShell and ensure you are running the latest version. For detailed instructions and the update command, refer to the [Install Microsoft Teams PowerShell ](/microsoftteams/teams-powershell-install) article.
+Please connect to PowerShell and ensure you're running the latest version. For detailed instructions and the update command, refer to the [Install Microsoft Teams PowerShell ](/microsoftteams/teams-powershell-install) article.
 
 Admins can turn on or off voice and face enrollment for specific users, or groups using the [Team meeting policy](/powershell/module/teams/set-csteamsmeetingpolicy). By default, voice and face enrollment is disabled for all users in the organization, but admins can change this setting using PowerShell:
 
@@ -139,6 +139,11 @@ Set-CsTeamsMeetingPolicy -Identity -PolicyName -EnrollUserOverride Disabled
 
  
 
+> [!NOTE]
+> A new `csTeamsAIPolicy` for Microsoft Teams, now available via Microsoft PowerShell, will take effect in mid-February 2025. This policy will replace the existing enrollment setting in `csTeamsMeetingPolicy` and includes two settings: `EnrollFace` and `EnrollVoice`.
+> To help you get started, review:
+- [Set-CsTeamsAIPolicy (MicrosoftTeamsPowerShell)](/powershell/module/teams/set-csteamsaipolicy)
+
 Admins can manage how voice and face profiles are used to turn off Voice Isolation for users to enhance noise and voice background reduction admins can switch off voice isolation with PowerShell in the meeting policy.
 
 ```powershell
@@ -151,8 +156,6 @@ Admins can manage how voice and face profiles are used to turn off Voice Isolati
   -VoiceIsolation Disabled
 ```
 
- 
-
 To prevent recognition of users in meeting rooms, admins can turn off (default) face and voice identification on the Microsoft Teams room account in the meeting policy.
 
 - roomPeopleNameUserOverride = On | Off (default)
@@ -160,9 +163,11 @@ To prevent recognition of users in meeting rooms, admins can turn off (default) 
 
 ## Data export
 
-Admins can export the voice and face profiles of users for backup, using Teams Admin Center. The exported profiles are in the form of ZIP files that contain the voice sample and face images of the user.
+Data export is managed directly by end users. End users can follow these steps to export their data:
 
-To export the voice and face profiles of users using the Teams Admin Center, admins can go to **Users > Manage users > Account > Biometric Profile > Download biometric profile**. 
+Go to **Settings** and more ... > **Settings** > **Recognition**. 
+
+Select **Export** to download your data. The data will be saved directly to your device's **Downloads** folder.
 
 ## Frequently asked questions
 
@@ -170,7 +175,7 @@ To export the voice and face profiles of users using the Teams Admin Center, adm
 **Answer:** Voice data is stored in the Office 365 trusted compliance store.
 
 **Question:** Can both users and admins control the data being saved?  
-**Answer:** Yes, both users and admins have control over the data being saved. Users are able to unenroll their voice. If users need to access their data, they would need to contact their admin. Users have full control of when to remove the data, and when a user selects unenroll from the Teams app, the data will be immediately deleted.
+**Answer:** Only the end user will be able to export their data. Users also are able to unenroll and remove their voice from the Teams app.
 
 **Question:** For how long do you keep the data?  
 **Answer:** The retention policy is one year. User's data will be deleted if it isn't used for one year.
@@ -178,4 +183,22 @@ To export the voice and face profiles of users using the Teams Admin Center, adm
 **Question:** How is data stored and processed for cross tenants?  
 
 **Answer:** We don't support getting data cross-tenant. We only retrieve data for their tenant only.
+
+**Question:** Are voice and face enrollments available in GCCH and DOD?
+
+**Answer:** No, voice and face enrollments are currently available only up to GCC and aren't available in GCCH or DOD environments.
+
+**Question:** Can admins download end users' voice and face data?
+
+**Answer:** No, data export is managed directly by end users. Admins don't have access to export voice and face data, giving users full control over their profiles.
+
+## Related topics
+
+- [Manage voice isolation for your users' Microsoft Teams calls and meetings](/microsoftteams/voice-isolation)
+
+- [Set-CsTeamsMeetingPolicy](/powershell/module/teams/set-csteamsmeetingpolicy)
+
+- [Microsoft 365 URLs and IP address ranges](/microsoft-365/enterprise/urls-and-ip-address-ranges)
+
+- [Manage voice recognition technology controls for an Intelligent Speaker](/microsoftteams/rooms/voice-recognition)
 
